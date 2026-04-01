@@ -1,0 +1,332 @@
+/* pages/index/index.wxss */
+/* 主页样式 */
+
+.container {
+  min-height: 100vh;
+  padding: 32rpx;
+  padding-top: 48rpx;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  background-color: #16213e;
+}
+
+/* 超标提醒动画 */
+.container.alerting {
+  animation: flash-red 0.5s ease-in-out 2;
+}
+
+/* 权限引导 */
+.permission-guide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  padding: 40rpx;
+}
+
+.permission-icon {
+  width: 160rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.05) 100%);
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  border: 4rpx solid rgba(74, 158, 255, 0.3);
+}
+
+.permission-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 24rpx;
+}
+
+.permission-desc {
+  font-size: 28rpx;
+  color: #a0a0a0;
+  margin-bottom: 60rpx;
+  padding: 0 20rpx;
+  line-height: 1.6;
+}
+
+/* 测量容器 */
+.measure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 场景标签 */
+.scene-tag {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 28rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 40rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+}
+
+.scene-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.scene-name {
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: 500;
+  margin-right: 20rpx;
+}
+
+.scene-threshold {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  font-size: 24rpx;
+  color: #a0a0a0;
+  padding: 6rpx 16rpx;
+  background-color: rgba(74, 158, 255, 0.15);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(74, 158, 255, 0.3);
+}
+
+.scene-threshold text {
+  color: #4a9eff;
+}
+
+/* 分贝显示 */
+.decibel-display {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 480rpx;
+  height: 480rpx;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  transition: background-color 0.3s ease;
+  box-shadow:
+    0 8rpx 32rpx rgba(0, 0, 0, 0.3),
+    inset 0 0 60rpx rgba(255, 255, 255, 0.05);
+}
+
+.decibel-ring {
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  right: 8rpx;
+  bottom: 8rpx;
+  border-radius: 50%;
+  border: 4rpx solid;
+  opacity: 0.3;
+  transition: border-color 0.3s ease;
+}
+
+.decibel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.decibel-value {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.db-number {
+  font-size: 128rpx;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.3);
+}
+
+.db-unit {
+  font-size: 36rpx;
+  font-weight: 500;
+  margin-left: 8rpx;
+  opacity: 0.8;
+}
+
+.decibel-level {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+}
+
+.decibel-desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+/* 波形图区域 */
+.waveform-section {
+  width: 100%;
+  margin-bottom: 32rpx;
+}
+
+.waveform-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+  padding: 0 8rpx;
+}
+
+.waveform-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.waveform-container {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 100%);
+  border: 2rpx solid rgba(255, 255, 255, 0.1);
+}
+
+.waveform-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 控制按钮 */
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.btn-start,
+.btn-stop {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  font-weight: 600;
+  border-radius: 50rpx;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(82, 196, 26, 0.4);
+}
+
+.btn-start:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(82, 196, 26, 0.3);
+}
+
+.btn-stop {
+  background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+  color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(255, 77, 79, 0.4);
+}
+
+.btn-stop:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(255, 77, 79, 0.3);
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.btn-settings {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 30rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.15);
+  border-radius: 50rpx;
+  transition: all 0.2s ease;
+}
+
+.btn-settings:active {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: scale(0.99);
+}
+
+/* 提示信息 */
+.tips {
+  width: 100%;
+  padding: 24rpx;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 16rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  font-size: 24rpx;
+  color: #a0a0a0;
+  margin-bottom: 12rpx;
+  line-height: 1.5;
+}
+
+.tip-item:last-child {
+  margin-bottom: 0;
+}
+
+.tip-icon {
+  margin-right: 12rpx;
+  flex-shrink: 0;
+}
+
+/* 动画关键帧 */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes flash-red {
+  0%, 100% {
+    background-color: #16213e;
+  }
+  50% {
+    background-color: rgba(255, 77, 79, 0.3);
+  }
+}

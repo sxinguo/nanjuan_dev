@@ -1,0 +1,101 @@
+<!--pages/index/index.wxml-->
+<!--主页 - 分贝测量-->
+
+<view class="container {{isAlerting ? 'alerting' : ''}}">
+  <!-- 权限引导 -->
+  <view wx:if="{{showPermissionGuide}}" class="permission-guide">
+    <view class="permission-icon">
+      <view class="icon icon-mic icon-xl"></view>
+    </view>
+    <view class="permission-title">需要麦克风权限</view>
+    <view class="permission-desc">分贝仪需要使用麦克风来测量环境声音分贝，请授权后使用</view>
+    <button class="btn btn-primary" bindtap="openSetting">
+      <text class="icon-arrow-right"></text>
+      <text>去授权</text>
+    </button>
+  </view>
+
+  <!-- 主测量界面 -->
+  <view wx:else class="measure-container">
+    <!-- 场景标签 -->
+    <view class="scene-tag" bindtap="switchScene">
+      <text class="scene-icon">{{sceneIcon}}</text>
+      <text class="scene-name">{{sceneName}}</text>
+      <view class="scene-threshold">
+        <view class="icon icon-gauge icon-sm"></view>
+        <text>{{threshold}} dB</text>
+      </view>
+    </view>
+
+    <!-- 分贝显示 -->
+    <view class="decibel-display" style="background: {{levelInfo.bgColor}}">
+      <!-- 装饰环 -->
+      <view class="decibel-ring" style="border-color: {{levelInfo.color}}"></view>
+
+      <view class="decibel-content">
+        <view class="decibel-value" style="color: {{levelInfo.color}}">
+          <text class="db-number">{{currentDb}}</text>
+          <text class="db-unit">dB</text>
+        </view>
+        <view class="decibel-level" style="color: {{levelInfo.color}}">
+          {{levelInfo.label}}
+        </view>
+        <view class="decibel-desc">
+          {{levelInfo.description}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 波形图 -->
+    <view class="waveform-section">
+      <view class="waveform-header">
+        <view class="waveform-title">
+          <view class="icon icon-volume icon-sm"></view>
+          <text>实时波形</text>
+        </view>
+      </view>
+      <view class="waveform-container">
+        <canvas
+          type="2d"
+          id="waveformCanvas"
+          class="waveform-canvas"
+          canvas-id="waveformCanvas"
+        ></canvas>
+      </view>
+    </view>
+
+    <!-- 控制按钮 -->
+    <view class="control-buttons">
+      <button
+        class="btn {{isMeasuring ? 'btn-stop' : 'btn-start'}}"
+        bindtap="toggleMeasure"
+      >
+        <view wx:if="{{isMeasuring}}" class="btn-content">
+          <view class="icon icon-stop"></view>
+          <text>停止测量</text>
+        </view>
+        <view wx:else class="btn-content">
+          <view class="icon icon-play"></view>
+          <text>开始测量</text>
+        </view>
+      </button>
+
+      <button class="btn btn-settings" bindtap="goToSettings">
+        <view class="icon icon-settings icon-md"></view>
+        <text>设置</text>
+      </button>
+    </view>
+
+    <!-- 提示信息 -->
+    <view class="tips">
+      <view class="tip-item">
+        <view class="tip-icon">💡</view>
+        <text>测量时请保持手机麦克风朝向声源</text>
+      </view>
+      <view class="tip-item">
+        <view class="tip-icon">📊</view>
+        <text>分贝值为参考值，受设备影响</text>
+      </view>
+    </view>
+  </view>
+</view>

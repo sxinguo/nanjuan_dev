@@ -1,0 +1,186 @@
+<!--pages/settings/settings.wxml-->
+<!--设置页 - 阈值、提醒方式设置-->
+
+<view class="container">
+  <!-- 场景设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">场景模式</text>
+      <text class="section-desc">选择适合您当前环境的模式</text>
+    </view>
+
+    <view class="scene-card" bindtap="showScenePicker">
+      <view class="scene-info">
+        <text class="scene-icon">{{currentSceneInfo.icon}}</text>
+        <view class="scene-details">
+          <text class="scene-name">{{currentSceneInfo.name}}</text>
+          <text class="scene-desc">{{currentSceneInfo.description}}</text>
+        </view>
+      </view>
+      <view class="icon icon-arrow-right icon-md"></view>
+    </view>
+  </view>
+
+  <!-- 阈值设置 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">分贝阈值</text>
+      <text class="section-desc">超过此值将触发提醒</text>
+    </view>
+
+    <view class="threshold-display">
+      <view class="threshold-value-wrapper">
+        <view class="icon icon-gauge icon-lg"></view>
+        <text class="threshold-value">{{threshold}}</text>
+        <text class="threshold-unit">dB</text>
+      </view>
+    </view>
+
+    <view class="slider-wrapper">
+      <slider
+        class="threshold-slider"
+        min="20"
+        max="100"
+        step="1"
+        value="{{threshold}}"
+        block-size="24"
+        activeColor="#4a9eff"
+        backgroundColor="rgba(255,255,255,0.2)"
+        bindchange="onThresholdChange"
+      />
+    </view>
+
+    <view class="slider-labels">
+      <text class="slider-label">20 dB</text>
+      <text class="slider-label">60 dB</text>
+      <text class="slider-label">100 dB</text>
+    </view>
+  </view>
+
+  <!-- 提醒方式 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">提醒方式</text>
+      <text class="section-desc">选择超标时的提醒方式</text>
+    </view>
+
+    <view class="setting-item">
+      <view class="setting-left">
+        <view class="setting-icon-wrapper vibrate">
+          <view class="icon icon-vibrate icon-md"></view>
+        </view>
+        <view class="setting-text">
+          <text class="setting-label">震动提醒</text>
+          <text class="setting-desc">手机震动提示</text>
+        </view>
+      </view>
+      <switch
+        checked="{{alertVibrate}}"
+        color="#4a9eff"
+        bindchange="toggleVibrate"
+      />
+    </view>
+
+    <view class="setting-item">
+      <view class="setting-left">
+        <view class="setting-icon-wrapper sound">
+          <view class="icon icon-bell icon-md"></view>
+        </view>
+        <view class="setting-text">
+          <text class="setting-label">音效提醒</text>
+          <text class="setting-desc">播放提示音</text>
+        </view>
+      </view>
+      <switch
+        checked="{{alertSound}}"
+        color="#4a9eff"
+        bindchange="toggleSound"
+      />
+    </view>
+
+    <view class="setting-item">
+      <view class="setting-left">
+        <view class="setting-icon-wrapper visual">
+          <view class="icon icon-light icon-md"></view>
+        </view>
+        <view class="setting-text">
+          <text class="setting-label">视觉提醒</text>
+          <text class="setting-desc">屏幕闪烁提示</text>
+        </view>
+      </view>
+      <switch
+        checked="{{alertVisual}}"
+        color="#4a9eff"
+        bindchange="toggleVisual"
+      />
+    </view>
+  </view>
+
+  <!-- 提醒间隔 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">提醒间隔</text>
+      <text class="section-desc">避免频繁提醒，设置最小间隔</text>
+    </view>
+
+    <view class="interval-display">
+      <text class="interval-value">{{alertInterval}}</text>
+      <text class="interval-unit">秒</text>
+    </view>
+
+    <view class="slider-wrapper">
+      <slider
+        class="interval-slider"
+        min="1"
+        max="10"
+        step="1"
+        value="{{alertInterval}}"
+        block-size="24"
+        activeColor="#4a9eff"
+        backgroundColor="rgba(255,255,255,0.2)"
+        bindchange="onIntervalChange"
+      />
+    </view>
+
+    <view class="slider-labels">
+      <text class="slider-label">1秒</text>
+      <text class="slider-label">5秒</text>
+      <text class="slider-label">10秒</text>
+    </view>
+  </view>
+
+  <!-- 重置按钮 -->
+  <button class="btn-reset" bindtap="resetSettings">
+    恢复默认设置
+  </button>
+
+  <!-- 场景选择器 -->
+  <view class="scene-picker-mask {{showScenePicker ? 'show' : ''}}" bindtap="hideScenePicker">
+    <view class="scene-picker" catchtap>
+      <view class="picker-header">
+        <text class="picker-title">选择场景</text>
+        <view class="picker-close" bindtap="hideScenePicker">
+          <view class="icon icon-close icon-md"></view>
+        </view>
+      </view>
+
+      <view class="picker-options">
+        <view
+          wx:for="{{scenes}}"
+          wx:key="key"
+          class="picker-option {{currentScene === item.key ? 'active' : ''}}"
+          data-scene="{{item.key}}"
+          bindtap="selectScene"
+        >
+          <text class="picker-option-icon">{{item.icon}}</text>
+          <view class="picker-option-info">
+            <text class="picker-option-name">{{item.name}}</text>
+            <text class="picker-option-desc">{{item.description}}</text>
+            <text class="picker-option-threshold" wx:if="{{item.threshold}}">阈值: {{item.threshold}} dB</text>
+          </view>
+          <view wx:if="{{currentScene === item.key}}" class="icon icon-check icon-md"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

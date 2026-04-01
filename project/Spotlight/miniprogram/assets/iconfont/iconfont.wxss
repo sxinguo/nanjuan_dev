@@ -1,0 +1,330 @@
+/* assets/iconfont/iconfont.wxss */
+/* Iconfont 图标样式 - 使用 Unicode 方式 */
+/* 由于微信小程序不支持外部字体文件（除 base64 外），这里使用 Unicode 符号和 CSS 模拟图标 */
+
+/* 图标基础类 */
+.icon {
+  display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 麦克风图标 - 使用 CSS 绘制 */
+.icon-mic {
+  position: relative;
+  width: 0.8em;
+  height: 1.2em;
+  border: 2rpx solid currentColor;
+  border-radius: 0.4em;
+  margin: 0.1em 0.1em 0;
+}
+
+.icon-mic::before {
+  content: '';
+  position: absolute;
+  bottom: -0.3em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 0.3em solid transparent;
+  border-right: 0.3em solid transparent;
+  border-top: 0.3em solid currentColor;
+}
+
+.icon-mic::after {
+  content: '';
+  position: absolute;
+  bottom: -0.6em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.4em;
+  height: 0;
+  border-top: 2rpx solid currentColor;
+}
+
+/* 播放图标 - 三角形 */
+.icon-play {
+  width: 0;
+  height: 0;
+  border-left: 0.8em solid currentColor;
+  border-top: 0.5em solid transparent;
+  border-bottom: 0.5em solid transparent;
+  margin-left: 0.1em;
+}
+
+/* 停止图标 - 方块 */
+.icon-stop {
+  width: 0.8em;
+  height: 0.8em;
+  background-color: currentColor;
+  border-radius: 2rpx;
+}
+
+/* 设置图标 - 齿轮 */
+.icon-settings {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border: 2rpx solid currentColor;
+  border-radius: 50%;
+}
+
+.icon-settings::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.4em;
+  height: 0.4em;
+  border: 2rpx solid currentColor;
+  border-radius: 50%;
+}
+
+/* 声波图标 */
+.icon-sound-wave {
+  display: flex;
+  align-items: center;
+  gap: 2rpx;
+  height: 1em;
+}
+
+.icon-sound-wave::before,
+.icon-sound-wave::after {
+  content: '';
+  width: 3rpx;
+  height: 60%;
+  background-color: currentColor;
+  border-radius: 2rpx;
+}
+
+.icon-sound-wave::after {
+  height: 100%;
+}
+
+/* 震动图标 */
+.icon-vibrate {
+  width: 0.8em;
+  height: 1.2em;
+  border: 2rpx solid currentColor;
+  border-radius: 4rpx;
+  position: relative;
+}
+
+.icon-vibrate::before,
+.icon-vibrate::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 0.2em solid transparent;
+  border-bottom: 0.2em solid transparent;
+}
+
+.icon-vibrate::before {
+  left: -0.4em;
+  border-right: 0.2em solid currentColor;
+}
+
+.icon-vibrate::after {
+  right: -0.4em;
+  border-left: 0.2em solid currentColor;
+}
+
+/* 提醒/铃铛图标 */
+.icon-bell {
+  position: relative;
+  width: 0.8em;
+  height: 0.8em;
+  border: 2rpx solid currentColor;
+  border-radius: 50% 50% 0 0;
+  border-bottom: none;
+  margin-top: 0.3em;
+}
+
+.icon-bell::before {
+  content: '';
+  position: absolute;
+  bottom: -0.15em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.3em;
+  height: 0.15em;
+  background-color: currentColor;
+  border-radius: 0 0 0.15em 0.15em;
+}
+
+/* 灯泡/视觉提醒图标 */
+.icon-light {
+  position: relative;
+  width: 0.7em;
+  height: 0.7em;
+  border: 2rpx solid currentColor;
+  border-radius: 50%;
+  margin-bottom: 0.2em;
+}
+
+.icon-light::after {
+  content: '';
+  position: absolute;
+  bottom: -0.35em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.3em;
+  height: 0.2em;
+  background-color: currentColor;
+  border-radius: 0 0 4rpx 4rpx;
+}
+
+/* 箭头图标 */
+.icon-arrow-right {
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 2rpx solid currentColor;
+  border-right: 2rpx solid currentColor;
+  transform: rotate(45deg);
+}
+
+.icon-arrow-left {
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 2rpx solid currentColor;
+  border-left: 2rpx solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.icon-arrow-down {
+  width: 0.5em;
+  height: 0.5em;
+  border-top: 2rpx solid currentColor;
+  border-right: 2rpx solid currentColor;
+  transform: rotate(135deg);
+}
+
+/* 勾选图标 */
+.icon-check {
+  width: 0.6em;
+  height: 0.3em;
+  border-left: 2rpx solid currentColor;
+  border-bottom: 2rpx solid currentColor;
+  transform: rotate(-45deg);
+  margin-top: 0.2em;
+}
+
+/* 关闭图标 */
+.icon-close {
+  position: relative;
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.icon-close::before,
+.icon-close::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2rpx;
+  background-color: currentColor;
+}
+
+.icon-close::before {
+  transform: rotate(45deg);
+}
+
+.icon-close::after {
+  transform: rotate(-45deg);
+}
+
+/* 音量图标 */
+.icon-volume {
+  display: flex;
+  align-items: center;
+}
+
+.icon-volume::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-right: 0.5em solid currentColor;
+}
+
+.icon-volume::after {
+  content: '';
+  width: 0.3em;
+  height: 0.6em;
+  border: 2rpx solid currentColor;
+  border-left: none;
+  border-radius: 0 4rpx 4rpx 0;
+  margin-left: -1rpx;
+}
+
+/* 阈值/仪表图标 */
+.icon-gauge {
+  width: 1em;
+  height: 0.5em;
+  border: 2rpx solid currentColor;
+  border-bottom: none;
+  border-radius: 1em 1em 0 0;
+  position: relative;
+}
+
+.icon-gauge::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2rpx;
+  height: 0.35em;
+  background-color: currentColor;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(-30deg);
+}
+
+/* 场景图标 - 使用 SVG 内联方式 */
+/* 学习模式 */
+.icon-study::before {
+  content: '📚';
+}
+
+/* 睡眠模式 */
+.icon-sleep::before {
+  content: '😴';
+}
+
+/* 办公模式 */
+.icon-office::before {
+  content: '💼';
+}
+
+/* 自由模式 */
+.icon-custom::before {
+  content: '🎯';
+}
+
+/* 简单的图标尺寸 */
+.icon-sm {
+  font-size: 24rpx;
+}
+
+.icon-md {
+  font-size: 32rpx;
+}
+
+.icon-lg {
+  font-size: 48rpx;
+}
+
+.icon-xl {
+  font-size: 64rpx;
+}
